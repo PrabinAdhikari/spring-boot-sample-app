@@ -113,3 +113,11 @@ resource "aws_elastic_beanstalk_environment" "spring_boot_env1" {
     Environment = "tf-workshop"
   }
 }
+
+data "aws_alb" "created_by_eb" {
+  arn  = aws_elastic_beanstalk_environment.spring_boot_env1.load_balancers[0]
+}
+
+output "dns_name" {
+  value = data.aws_alb.created_by_eb.dns_name
+}
