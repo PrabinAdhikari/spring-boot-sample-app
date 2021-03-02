@@ -1,0 +1,12 @@
+terraform {
+  required_version = ">=0.12.0"
+  required_providers {
+    aws = "~>3.30"
+  }
+  backend "local" {
+    path = "tf-workshop-statefile"
+  }
+}
+provider "aws" {
+  region = "us-east-1"
+}
