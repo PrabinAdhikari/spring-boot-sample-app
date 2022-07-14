@@ -1,4 +1,4 @@
-package com.example.springboot;
+package com.example.springboot.controller.integration;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -14,7 +14,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class HelloControllerIT {
+public class HelloControllerTest {
 
     @LocalServerPort
     private int port;
