@@ -14,12 +14,13 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class HelloControllerTest {
+public class BooksControllerIT {
 
     @LocalServerPort
     private int port;
 
     private URL base;
+    private String expectedBooksAsJsonString = "[{\"id\":\"1\",\"name\":\"Data Structure\",\"price\":250.5},{\"id\":\"2\",\"name\":\"Algorithm\",\"price\":300.5},{\"id\":\"3\",\"name\":\"DBMS\",\"price\":200.5},{\"id\":\"4\",\"name\":\"Software Engineering\",\"price\":150.5}]";
 
     @Autowired
     private TestRestTemplate template;
@@ -34,5 +35,10 @@ public class HelloControllerTest {
         ResponseEntity<String> response = template.getForEntity(base.toString(),
                 String.class);
         assertThat(response.getBody()).isEqualTo("Greetings from Spring Boot!");
+    }
+    @Test
+    public void getBooks(){
+        ResponseEntity<String> response = template.getForEntity(base.toString()+"/books",String.class);
+        assertThat(response.getBody()).isEqualTo(expectedBooksAsJsonString);
     }
 }
